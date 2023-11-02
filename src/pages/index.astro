@@ -72,7 +72,6 @@ import Card from '../components/card/index';
     padding: 1rem;
     width: 800px;
     max-width: calc(100% - 2rem);
-    color: white;
     font-size: 20px;
     line-height: 1.6;
   }
@@ -113,12 +112,10 @@ import Card from '../components/card/index';
     font-size: 0.8em;
     font-weight: bold;
     background: rgba(var(--accent-light), 12%);
-    color: rgb(var(--accent-light));
     border-radius: 4px;
     padding: 0.3em 0.4em;
   }
   .instructions strong {
-    color: rgb(var(--accent-light));
   }
   .link-card-grid {
     display: grid;
@@ -127,3 +124,27 @@ import Card from '../components/card/index';
     padding: 0;
   }
 </style>
+
+<script is:inline>
+const getThemePreference = () => {
+  if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+    return localStorage.getItem('theme');
+  }
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? 'dark'
+    : 'light';
+};
+const isDark = getThemePreference() === 'dark';
+document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+if (typeof localStorage !== 'undefined') {
+  const observer = new MutationObserver(() => {
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+  observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+  }
+</script>

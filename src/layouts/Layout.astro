@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import { ModeToggle } from '@/components/ModeToggle/ModeToggle';
 ---
 
 <!doctype html>
@@ -17,6 +18,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <ModeToggle client:load />
     <slot />
   </body>
 </html>
