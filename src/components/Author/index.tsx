@@ -6,28 +6,28 @@ import {
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
 
-import type { Authors } from '@/schemas';
+import type { AuthorPartsFragment } from 'tina/__generated__/types';
 
 interface IProps {
   className?: string;
-  author: Authors;
+  author: AuthorPartsFragment;
 }
-export function Author(props: IProps) {
+export function AuthorLink(props: IProps) {
   const { author } = props;
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Button variant="link">{author.data.name}</Button>
+        <Button variant="link">{author.name}</Button>
       </HoverCardTrigger>
       <HoverCardContent className="w-80" align="start">
         <div className="flex justify-between space-x-4">
           <Avatar>
-            <AvatarImage src={author.data.avatar.src} />
-            <AvatarFallback>{author.data.name[0]}</AvatarFallback>
+            <AvatarImage src={author.avatar} />
+            <AvatarFallback>{author.name[0]}</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">{author.data.name}</h4>
-            <p className="text-sm">{author.data.description}</p>
+            <h4 className="text-sm font-semibold">{author.name}</h4>
+            <p className="text-sm">{author.description}</p>
           </div>
         </div>
       </HoverCardContent>
