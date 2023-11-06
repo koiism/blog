@@ -4,7 +4,6 @@ import type { Post, Author } from 'tina/__generated__/types';
 import {
   AuthorDocument,
   PostDocument,
-  type Maybe,
 } from 'tina/__generated__/types';
 
 export function cn(...inputs: ClassValue[]) {
