@@ -7,6 +7,7 @@ interface Props {
 
 const { title } = Astro.props;
 import { ModeToggle } from '@/components/ModeToggle';
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!doctype html>
@@ -18,6 +19,7 @@ import { ModeToggle } from '@/components/ModeToggle';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
     <ModeToggle client:load />
