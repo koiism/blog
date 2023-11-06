@@ -4,6 +4,7 @@ import { AuthorLink } from '@/components/Author';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import './index.scss';
 import { postWrapper } from '@/lib/utils';
+import { TinaMarkdown } from 'tinacms/dist/rich-text';
 
 interface IProps {
   post: Post;
@@ -16,7 +17,9 @@ export function PostContent(props: PropsWithChildren<IProps>) {
     <div className="post">
       <h1 data-tina-field={tinaField(postData)}>{postData.title}</h1>
       <AuthorLink author={postData.author} />
-      {children}
+      <div data-tina-field={tinaField(postData)}>
+        <TinaMarkdown content={postData.body}></TinaMarkdown>
+      </div>
     </div>
   );
 }
