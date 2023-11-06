@@ -2,8 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import client from 'tina/__generated__/client';
 import type { PostConnectionEdges } from 'tina/__generated__/types';
-import { Code } from 'astro:components';
-import { getPostById } from '@/schemas';
+import { getPostById, type Post } from '@/schemas';
 import { PostContent } from '@/components/PostContent';
 
 interface Props {
@@ -21,11 +20,8 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 
-const filename = entry.node?._sys.basename || '';
-const posts = await getPostById(filename);
-
 ---
 
 <Layout title="post">
-  <PostContent post={posts} client:load/>
+  <PostContent post={entry.node as Post} client:load/>
 </Layout>
