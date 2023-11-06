@@ -1,4 +1,5 @@
 import { defineConfig } from 'tinacms';
+import { heroBlock } from './templates';
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
@@ -81,6 +82,26 @@ export default defineConfig({
         ui: {
           router: ({ document }) => {
             return `/posts/${document._sys.filename}`;
+          },
+        },
+      },
+      {
+        name: 'page',
+        label: 'Page',
+        path: 'src/content/page',
+        format: 'json',
+        fields: [
+          {
+            type: 'object',
+            list: true,
+            name: 'blocks',
+            label: 'Sections',
+            templates: [heroBlock],
+          },
+        ],
+        ui: {
+          router: ({ document }) => {
+            return `/page/${document._sys.filename}`;
           },
         },
       },

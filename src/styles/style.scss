@@ -73,29 +73,44 @@
   background-position: center;
 }
 
-@mixin scrollbar($size) {
+@mixin scrollbar($size, $hoverSize) {
   &::-webkit-scrollbar {
+    transition: all 1s ease-in-out;
     width: $size;
     height: $size;
   }
 
   &::-webkit-scrollbar-track {
+    transition: all 1s ease-in-out;
     background: hsl(var(--background));
+    width: $size;
+    height: $size;
+    &:hover,
+    &:active {
+      width: $hoverSize;
+      height: $hoverSize;
+    }
   }
 
   &::-webkit-scrollbar-thumb {
-    background: hsl(var(--primary));
+    transition: all 1s ease-in-out;
+    background: hsla(var(--foreground));
     border-radius: $size;
-  }
+    width: $size;
+    height: $size;
+    &:hover {
+      background: hsla(var(--foreground) / 0.7);
+      border-radius: $size;
+      width: $hoverSize;
+      height: $hoverSize;
+    }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: hsla(var(--primary) / 0.7);
-    border-radius: $size;
-  }
-
-  &::-webkit-scrollbar-thumb:active {
-    background: hsla(var(--primary) / 0.8);
-    border-radius: $size;
+    &:active {
+      background: hsla(var(--foreground) / 0.8);
+      border-radius: $size;
+      width: $hoverSize;
+      height: $hoverSize;
+    }
   }
 }
 
@@ -108,12 +123,12 @@ body {
 }
 
 * {
-  @include scrollbar(6px);
+  @include scrollbar(6px, 12px);
 }
 
 html {
   font-family: system-ui, sans-serif;
-  background: #13151a;
+  background: hsl(var(--background));
   background-size: 224px;
 }
 code {
