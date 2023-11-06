@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Post, Author } from '@/schemas';
+import type { Post, Author } from 'tina/__generated__/types';
 import {
   AuthorDocument,
   PostDocument,

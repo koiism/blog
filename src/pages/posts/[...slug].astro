@@ -1,8 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import client from 'tina/__generated__/client';
-import type { PostConnectionEdges } from 'tina/__generated__/types';
-import { getPostById, type Post } from '@/schemas';
+import type { PostConnectionEdges, Post } from 'tina/__generated__/types';
 import { PostContent } from '@/components/PostContent';
 
 interface Props {

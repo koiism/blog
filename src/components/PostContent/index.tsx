@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import type { Post } from '@/schemas';
+import type { Post } from 'tina/__generated__/types';
 import { AuthorLink } from '@/components/Author';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import './index.scss';

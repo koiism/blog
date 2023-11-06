@@ -5,10 +5,9 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from '@/components/ui/hover-card';
-import { authorWrapper } from '@/lib/utils';
 
 import type { Author } from 'tina/__generated__/types';
-import { tinaField, useTina } from 'tinacms/dist/react';
+import { tinaField } from 'tinacms/dist/react';
 
 interface IProps {
   className?: string;
@@ -16,22 +15,21 @@ interface IProps {
 }
 export function AuthorLink(props: IProps) {
   const { author } = props;
-  const authorData = useTina(authorWrapper(author)).data.author;
   return (
-    <div data-tina-field={tinaField(authorData)}>
+    <div data-tina-field={tinaField(author)}>
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button variant="link">{authorData.name}</Button>
+          <Button variant="link">{author.name}</Button>
         </HoverCardTrigger>
         <HoverCardContent className="w-80" align="start">
           <div className="flex justify-between space-x-4">
             <Avatar>
-              <AvatarImage src={authorData.avatar} />
-              <AvatarFallback>{authorData.name[0]}</AvatarFallback>
+              <AvatarImage src={author.avatar} />
+              <AvatarFallback>{author.name[0]}</AvatarFallback>
             </Avatar>
             <div className="space-y-1">
-              <h4 className="text-sm font-semibold">{authorData.name}</h4>
-              <p className="text-sm">{authorData.description}</p>
+              <h4 className="text-sm font-semibold">{author.name}</h4>
+              <p className="text-sm">{author.description}</p>
             </div>
           </div>
         </HoverCardContent>
