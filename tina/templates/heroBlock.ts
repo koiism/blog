@@ -31,3 +31,20 @@ export const heroBlock: TinaTemplate = {
     },
   ],
 }
+export const MDBlock: TinaTemplate = {
+  name: 'markdown',
+  label: 'Markdown',
+  ui: {
+    defaultItem: {
+      markdown: '',
+    },
+  },
+  fields: [
+    {
+      type: 'reference',
+      collections: ['post'],
+      name: 'markdown',
+      label: 'Markdown',
+    },
+  ],
+}

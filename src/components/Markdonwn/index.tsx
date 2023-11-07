@@ -3,6 +3,7 @@ import './index.scss';
 
 interface IProps {
   content: TinaMarkdownContent | TinaMarkdownContent[];
+
 }
 
 export function Markdown({ content }: IProps) {

@@ -19,7 +19,7 @@ export function AuthorLink(props: IProps) {
     <div data-tina-field={tinaField(author)}>
       <HoverCard>
         <HoverCardTrigger asChild>
-          <Button variant="link">{author.name}</Button>
+          <Button className='px-0' variant="link">{author.name}</Button>
         </HoverCardTrigger>
         <HoverCardContent className="w-80" align="start">
           <div className="flex justify-between space-x-4">

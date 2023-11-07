@@ -1,5 +1,5 @@
-import { defineConfig } from 'tinacms';
-import { heroBlock } from './templates';
+import { Form, TinaCMS, defineConfig } from 'tinacms';
+import { heroBlock, MDBlock } from './templates';
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
@@ -46,10 +46,41 @@ export default defineConfig({
             label: 'Author',
             required: true,
           },
+          {
+            name: 'createdAt',
+            label: 'Created At',
+            type: 'datetime',
+          },
+          {
+            name: 'updatedAt',
+            label: 'Updated At',
+            type: 'datetime',
+          },
         ],
         ui: {
           router: ({ document }) => {
             return `/posts/${document._sys.filename}`;
+          },
+          beforeSubmit: async ({
+            form,
+            values,
+          }: {
+            form: Form
+            cms: TinaCMS
+            values: Record<string, any>
+          }) => {
+            if (form.crudType === 'create') {
+              return {
+                ...values,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              }
+            } else {
+              return {
+                ...values,
+                updatedAt: new Date().toISOString(),
+              }
+            }
           },
         },
       },
@@ -96,7 +127,7 @@ export default defineConfig({
             list: true,
             name: 'blocks',
             label: 'Sections',
-            templates: [heroBlock],
+            templates: [heroBlock, MDBlock],
           },
         ],
         ui: {

@@ -1,1 +1,1 @@
-export { heroBlock } from './heroBlock';
+export { heroBlock, MDBlock } from './heroBlock';

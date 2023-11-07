@@ -3,7 +3,7 @@ import type { Post } from 'tina/__generated__/types';
 import { AuthorLink } from '@/components/Author';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import './index.scss';
-import { postWrapper } from '@/lib/utils';
+import { postWrapper, timeCalendar, timeFromNow } from '@/lib/utils';
 import { Markdown } from '@/components/Markdonwn';
 
 interface IProps {
@@ -15,9 +15,16 @@ export function PostContent(props: PropsWithChildren<IProps>) {
   const postData = useTina(postWrapper(post)).data.post;
   return (
     <div className="post">
-      <h1 data-tina-field={tinaField(postData)}>{postData.title}</h1>
-      <AuthorLink author={postData.author} />
-      <div data-tina-field={tinaField(postData)}>
+      <h1 className='text-6xl font-bold' data-tina-field={tinaField(postData, 'title')}>{postData.title}</h1>
+      <div className='flex flex-row items-center justify-between'>
+        <div>
+          最后编辑于 {timeFromNow(postData.updatedAt)}
+        </div>
+        <div className='flex flex-row gap-1 items-center'>
+          作者：<AuthorLink author={postData.author} />
+        </div>
+      </div>
+      <div data-tina-field={tinaField(postData, 'body')}>
         <Markdown content={postData.body}></Markdown>
       </div>
     </div>
