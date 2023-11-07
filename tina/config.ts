@@ -1,5 +1,5 @@
 import { Form, TinaCMS, defineConfig } from 'tinacms';
-import { heroBlock, MDBlock } from './templates';
+import { PostBlock } from './templates';
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
@@ -23,37 +23,37 @@ export default defineConfig({
     collections: [
       {
         name: 'post',
-        label: 'Posts',
+        label: '文章',
         path: 'src/content/posts',
         fields: [
           {
             type: 'string',
             name: 'title',
-            label: 'Title',
+            label: '标题',
             isTitle: true,
             required: true,
           },
           {
             type: 'rich-text',
             name: 'body',
-            label: 'Body',
+            label: '内容',
             isBody: true,
           },
           {
             type: 'reference',
             collections: ['author'],
             name: 'author',
-            label: 'Author',
+            label: '作者',
             required: true,
           },
           {
             name: 'createdAt',
-            label: 'Created At',
+            label: '创建时间',
             type: 'datetime',
           },
           {
             name: 'updatedAt',
-            label: 'Updated At',
+            label: '编辑时间',
             type: 'datetime',
           },
         ],
@@ -86,27 +86,27 @@ export default defineConfig({
       },
       {
         name: 'author',
-        label: 'Authors',
+        label: '作者',
         path: 'src/content/authors',
         format: 'json',
         fields: [
           {
             type: 'string',
             name: 'name',
-            label: 'Name',
+            label: '昵称',
             isTitle: true,
             required: true,
           },
           {
             type: 'image',
             name: 'avatar',
-            label: 'Avatar',
+            label: '头像',
             required: true,
           },
           {
             type: 'string',
             name: 'description',
-            label: 'Description',
+            label: '描述',
             required: true,
           },
         ],
@@ -118,16 +118,28 @@ export default defineConfig({
       },
       {
         name: 'page',
-        label: 'Page',
+        label: '页面',
         path: 'src/content/page',
-        format: 'json',
+        format: 'mdx',
         fields: [
+          {
+            type: 'boolean',
+            name: 'isEntry',
+            label: '是否展示在侧边栏上',
+            description: '如果勾选，会在侧边栏上展示；同名目录下的其他页面会作为子页面展示在侧边栏上',
+          },
           {
             type: 'object',
             list: true,
             name: 'blocks',
-            label: 'Sections',
-            templates: [heroBlock, MDBlock],
+            label: '模块',
+            templates: [PostBlock],
+          },
+          {
+            type: 'rich-text',
+            name: 'body',
+            label: '内容',
+            isBody: true,
           },
         ],
         ui: {

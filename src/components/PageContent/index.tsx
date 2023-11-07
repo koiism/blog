@@ -1,7 +1,7 @@
 import { pageWrapper } from '@/lib/utils';
 import React from 'react';
 import type { Page } from 'tina/__generated__/types';
-import { useTina } from 'tinacms/dist/react';
+import { tinaField, useTina } from 'tinacms/dist/react';
 import { Markdown } from '../Markdonwn';
 
 interface IProps {
@@ -19,17 +19,11 @@ export const PageContent = (props: IProps) => {
           switch (block?.__typename) {
             case 'PageBlocksMarkdown':
               return (
-                <React.Fragment key={i + block.__typename}>
+                <div data-tina-field={tinaField(block)} key={i + block.__typename}>
                   {
-                    block.markdown ? <Markdown content={block.markdown.body}></Markdown> : <></>
+                    block.post ? <Markdown content={block.post.body}></Markdown> : <></>
                   }
-                </React.Fragment>
-              );
-            case 'PageBlocksHero':
-              return (
-                <React.Fragment key={i + block.__typename}>
-                  {block.__typename}
-                </React.Fragment>
+                </div>
               );
             default:
               return null;

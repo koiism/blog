@@ -10,10 +10,11 @@ interface Props {
 
 export async function getStaticPaths() {
   const pages = await client.queries.pageConnection();
+  console.log(pages.data.pageConnection.edges);
   const entries = pages.data.pageConnection.edges || [];
 
   return entries.map((entry) => ({
-    params: { slug: entry?.node?._sys?.filename },
+    params: { slug: entry?.node?._sys?.breadcrumbs.join('/') },
     props: { entry },
   }));
 }
