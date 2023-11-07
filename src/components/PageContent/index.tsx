@@ -11,7 +11,6 @@ interface IProps {
 export const PageContent = (props: IProps) => {
   const { page } = props;
   const pageData = useTina(pageWrapper(page)).data.page;
-  console.log(pageData.blocks);
   return (
     <>
       {pageData.blocks

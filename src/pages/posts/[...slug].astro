@@ -13,7 +13,7 @@ export async function getStaticPaths() {
   const entries = posts.data.postConnection.edges || [];
 
   return entries.map((entry) => ({
-    params: { slug: entry?.node?._sys?.filename },
+    params: { slug: entry?.node?._sys?.breadcrumbs.join('/') },
     props: { entry },
   }));
 }
@@ -21,6 +21,6 @@ const { entry } = Astro.props;
 
 ---
 
-<Layout title="post">
+<Layout title={entry.node?.title || entry.node?._sys.filename}>
   <PostContent post={entry.node as Post} client:load/>
 </Layout>

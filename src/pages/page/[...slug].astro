@@ -10,7 +10,6 @@ interface Props {
 
 export async function getStaticPaths() {
   const pages = await client.queries.pageConnection();
-  console.log(pages.data.pageConnection.edges);
   const entries = pages.data.pageConnection.edges || [];
 
   return entries.map((entry) => ({
@@ -22,6 +21,6 @@ const { entry } = Astro.props;
 
 ---
 
-<Layout title="page">
+<Layout title={entry.node?.title || entry.node?._sys.filename}>
   <PageContent page={entry.node as Page} client:load/>
 </Layout>

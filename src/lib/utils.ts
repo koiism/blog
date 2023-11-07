@@ -52,3 +52,16 @@ export const authorWrapper = tinaWrapperGenerator<Author>(
 );
 export const postWrapper = tinaWrapperGenerator<Post>('post', PostDocument);
 export const pageWrapper = tinaWrapperGenerator<Page>('page', PageDocument);
+export const groupBy = function <T extends Record<string, any>>(values?: T[] | null, keyFinder?: (item: T) => string | false | undefined) {
+  if (!values || !keyFinder) return;
+  const res: Record<string, T[]> = {};
+  values.forEach((item) => {
+    const key = keyFinder(item);
+    if (key && typeof key === 'string') {
+      if (!res[key]) {
+        res[key] = [] as T[];
+      }
+      res[key].push(item);
+    }
+  });
+};

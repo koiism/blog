@@ -123,6 +123,13 @@ export default defineConfig({
         format: 'mdx',
         fields: [
           {
+            type: 'string',
+            name: 'title',
+            label: '标题',
+            isTitle: true,
+            required: true,
+          },
+          {
             type: 'boolean',
             name: 'isEntry',
             label: '是否展示在侧边栏上',
