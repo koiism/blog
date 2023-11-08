@@ -1,13 +1,13 @@
 ---
-createdAt: 2023-11-06T16:00:00.000Z
-updatedAt: 2023-11-07T04:53:29.565Z
 title: Examples
 author: src/content/authors/pidan.json
+createdAt: 2023-11-06T16:00:00.000Z
+updatedAt: 2023-11-08T11:08:43.074Z
 ---
 
 # Headers
 
-```
+```markdown
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading
@@ -46,7 +46,7 @@ Alternatively, for H1 and H2, an underline-ish style:
 
 # Lists
 
-```
+```markdown
 1. First ordered list item
 2. Another item
 ⋅⋅* Unordered sub-list.
@@ -128,7 +128,7 @@ Alternatively, for H1 and H2, an underline-ish style:
 
 # Task lists
 
-```
+```markdown
 - [x] Finish my changes
 - [ ] Push my commits to GitHub
 - [ ] Open a pull request

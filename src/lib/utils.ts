@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Post, Author, Page } from 'tina/__generated__/types';
+import type { Post, Author, Page, PageConnectionEdges } from 'tina/__generated__/types';
 import {
   AuthorDocument,
   PageDocument,
@@ -11,6 +11,7 @@ import isLeapYear from 'dayjs/plugin/isLeapYear' // 导入插件
 import calendar from 'dayjs/plugin/calendar' // 导入插件
 import relativeTime from 'dayjs/plugin/relativeTime' // 导入插件
 import 'dayjs/locale/zh-cn' // 导入本地化语言
+import client from 'tina/__generated__/client';
 
 dayjs.extend(isLeapYear) // 使用插件
 dayjs.extend(calendar) // 使用插件
@@ -52,16 +53,20 @@ export const authorWrapper = tinaWrapperGenerator<Author>(
 );
 export const postWrapper = tinaWrapperGenerator<Post>('post', PostDocument);
 export const pageWrapper = tinaWrapperGenerator<Page>('page', PageDocument);
-export const groupBy = function <T extends Record<string, any>>(values?: T[] | null, keyFinder?: (item: T) => string | false | undefined) {
-  if (!values || !keyFinder) return;
-  const res: Record<string, T[]> = {};
-  values.forEach((item) => {
-    const key = keyFinder(item);
-    if (key && typeof key === 'string') {
-      if (!res[key]) {
-        res[key] = [] as T[];
-      }
-      res[key].push(item);
+
+export const getSidebar = async function () {
+  const pages = (await client.queries.pageConnection()).data.pageConnection.edges;
+  if (!pages) return [];
+  const getDir = (page: PageConnectionEdges) => page?.node?._sys.breadcrumbs.join('/');
+  const roots = ( pages.filter((page) => page?.node?.isEntry) ) as PageConnectionEdges[];
+  return roots.map((root) => {
+    const dirPrefix = getDir(root);
+    const regExp = new RegExp(`^${dirPrefix}/[^/]+$`);
+    const children = pages.filter((page) => regExp.test(page?.node?._sys.relativePath || ''));
+    return {
+      ...root,
+      children,
     }
   });
-};
+
+}

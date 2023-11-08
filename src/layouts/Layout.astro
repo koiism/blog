@@ -3,19 +3,16 @@ import '@/styles/style.scss';
 import '@/styles/globals.css';
 import { ModeToggle } from '@/components/ModeToggle';
 import { ViewTransitions } from 'astro:transitions';
-import client from 'tina/__generated__/client';
-import { groupBy } from '@/lib/utils';
+import { getSidebar } from '@/lib/utils'
+
 interface Props {
   title?: string;
 }
 
 const { title = 'Koiism' } = Astro.props;
 
-const pages = (await client.queries.pageConnection()).data.pageConnection.edges;
-const navInfo = groupBy(pages, (page) => {
-  return '';
-})
-console.log(pages);
+const sidebar = await getSidebar();
+
 ---
 
 <!doctype html>
@@ -30,12 +27,14 @@ console.log(pages);
     <ViewTransitions />
   </head>
   <body>
-    <div class="flex flex-row w-screen h-screen gap-20">
+    <div class="flex flex-row w-screen h-screen gap-20 justify-between">
       <aside class="flex-none">
         <ModeToggle client:load />
       </aside>
-      <div class="overflow-auto px-3">
-        <slot />
+      <div class="overflow-auto px-3 flex-1 flex items-center flex-col">
+        <div class="max-w-[80%]">
+          <slot />
+        </div>
       </div>
     </div>
   </body>
