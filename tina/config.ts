@@ -2,6 +2,7 @@ import { defineConfig } from 'tinacms';
 import { post } from './collection/post';
 import { author } from './collection/author';
 import { page } from './collection/page';
+import { category } from './collection/category';
 
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
@@ -25,6 +26,7 @@ export default defineConfig({
       post,
       author,
       page,
+      category,
     ],
   },
 });

@@ -39,17 +39,32 @@ export const post: Collection = {
       required: true,
     },
     {
-      type: 'rich-text',
-      name: 'body',
-      label: '内容',
-      isBody: true,
-    },
-    {
       type: 'reference',
       collections: ['author'],
       name: 'author',
       label: '作者',
       required: true,
+    },
+    {
+      type: 'reference',
+      collections: ['category'],
+      name: 'category',
+      label: '分类',
+    },
+    {
+      type: 'string',
+      name: 'tags',
+      label: 'Tags',
+      list: true,
+      ui: {
+        component: 'tags',
+      }
+    },
+    {
+      type: 'rich-text',
+      name: 'body',
+      label: '内容',
+      isBody: true,
     },
     {
       name: 'createdAt',

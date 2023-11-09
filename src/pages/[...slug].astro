@@ -1,0 +1,26 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import client from 'tina/__generated__/client';
+import type { PageConnectionEdges, Page } from 'tina/__generated__/types';
+import { PageContent } from '@/components/PageContent';
+
+interface Props {
+  entry: PageConnectionEdges,
+}
+
+export async function getStaticPaths() {
+  const pages = await client.queries.pageConnection();
+  const entries = pages.data.pageConnection.edges || [];
+
+  return entries.map((entry) => ({
+    params: { slug: entry?.node?._sys?.breadcrumbs.join('/') },
+    props: { entry },
+  }));
+}
+const { entry } = Astro.props;
+
+---
+
+<Layout title={entry.node?.title || entry.node?._sys.filename}>
+  <PageContent page={entry.node as Page} client:load/>
+</Layout>
