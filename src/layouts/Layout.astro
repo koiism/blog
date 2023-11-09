@@ -1,17 +1,13 @@
 ---
 import '@/styles/style.scss';
 import '@/styles/globals.css';
-import { ModeToggle } from '@/components/ModeToggle';
 import { ViewTransitions } from 'astro:transitions';
-import { getSidebar } from '@/lib/utils'
 
 interface Props {
   title?: string;
 }
 
 const { title = 'Koiism' } = Astro.props;
-
-const sidebar = await getSidebar();
 
 ---
 
@@ -28,9 +24,6 @@ const sidebar = await getSidebar();
   </head>
   <body>
     <div class="flex flex-row w-screen h-screen gap-20 justify-between">
-      <aside class="flex-none">
-        <ModeToggle client:load />
-      </aside>
       <div class="overflow-auto px-3 flex-1 flex items-center flex-col">
         <div class="max-w-[80%]">
           <slot />

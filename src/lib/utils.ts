@@ -53,20 +53,3 @@ export const authorWrapper = tinaWrapperGenerator<Author>(
 );
 export const postWrapper = tinaWrapperGenerator<Post>('post', PostDocument);
 export const pageWrapper = tinaWrapperGenerator<Page>('page', PageDocument);
-
-export const getSidebar = async function () {
-  const pages = (await client.queries.pageConnection()).data.pageConnection.edges;
-  if (!pages) return [];
-  const getDir = (page: PageConnectionEdges) => page?.node?._sys.breadcrumbs.join('/');
-  const roots = ( pages.filter((page) => page?.node?.isEntry) ) as PageConnectionEdges[];
-  return roots.map((root) => {
-    const dirPrefix = getDir(root);
-    const regExp = new RegExp(`^${dirPrefix}/[^/]+$`);
-    const children = pages.filter((page) => regExp.test(page?.node?._sys.relativePath || ''));
-    return {
-      ...root,
-      children,
-    }
-  });
-
-}

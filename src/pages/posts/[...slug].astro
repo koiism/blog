@@ -10,7 +10,6 @@ interface Props {
 
 export async function getStaticPaths() {
   const posts = await client.queries.postConnection();
-  console.log(posts);
   const entries = posts.data.postConnection.edges || [];
 
   return entries.map((entry) => ({
