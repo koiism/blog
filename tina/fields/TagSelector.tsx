@@ -1,22 +1,18 @@
 import { useEffect } from "react";
 import client from "../__generated__/client";
-import { useAutocomplete, AutocompleteGetTagProps } from '@mui/base/useAutocomplete';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 
 
 export function TagSelector(props: any) {
   console.log(props);
   const { input, field } = props;
   const {
-    getRootProps,
-    getInputLabelProps,
     getInputProps,
     getTagProps,
     getListboxProps,
     getOptionProps,
     groupedOptions,
     value,
-    focused,
-    setAnchorEl,
   } = useAutocomplete({
     id: 'customized-hook-demo',
     defaultValue: [top10Films[1]],
@@ -31,14 +27,14 @@ export function TagSelector(props: any) {
   }, [])
   return (<div className="relative mb-5 last:mb-0">
     <label className="block font-sans text-xs font-semibold text-gray-700 whitespace-normal mb-2">{field.label}</label>
-    <div className="input-wrapper">
+    <div className="input-wrapper bg-white border">
       {value.map((option, index) => (
         <div className="tag" {...getTagProps({ index })}>{option.title}</div>
       ))}
-      <input type="text" {...getInputProps()} />
+      <input className="outline-none" type="text" {...getInputProps()} />
     </div>
     <ul className="list-box" {...getListboxProps()}>
-      {groupedOptions.map((option, index) => (
+      {( groupedOptions as {title: string, year: number}[] ).map((option, index) => (
         <li className="option" {...getOptionProps({ option, index })}>
           {option.title}
         </li>

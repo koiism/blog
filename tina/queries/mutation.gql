@@ -1,0 +1,35 @@
+mutation addCategory (
+  $relativePath: String!,
+  $template: String
+) {
+  addPendingDocument(
+    relativePath: $relativePath,
+    collection: "category",
+    template: $template
+  ) {
+    __typename,
+  }
+}
+
+mutation addTag (
+  $relativePath: String!,
+  $template: String
+) {
+  addPendingDocument(
+    relativePath: $relativePath,
+    collection: "tag",
+    template: $template
+  ) {
+    __typename,
+  }
+}
+
+mutation updateTag($relativePath: String!, $params: TagMutation!) {
+  updateTag(relativePath: $relativePath, params: $params) {
+    __typename,
+    description,
+    id,
+    name,
+    icon,
+  }
+}
