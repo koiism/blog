@@ -1,16 +1,15 @@
-
 import { type Collection } from 'tinacms';
 
-export const category: Collection = {
-  name: 'category',
-  label: '分类',
-  path: 'src/content/category',
+export const tag: Collection = {
+  name: 'tag',
+  label: 'Tag',
+  path: 'src/content/tags',
   format: 'json',
   fields: [
     {
       type: 'string',
       name: 'name',
-      label: '分类名',
+      label: 'tag名',
       isTitle: true,
       required: true,
     },
@@ -18,16 +17,19 @@ export const category: Collection = {
       type: 'string',
       name: 'color',
       label: '颜色',
-      required: true,
       ui: {
         component: 'color',
       }
     },
     {
       type: 'string',
+      name: 'icon',
+      label: 'icon',
+    },
+    {
+      type: 'string',
       name: 'description',
       label: '描述',
-      required: true,
     },
   ],
 }

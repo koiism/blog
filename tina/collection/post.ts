@@ -1,4 +1,5 @@
 import { Form, TinaCMS, type Collection } from 'tinacms';
+import { TagSelector } from '../fields/TagSelector';
 
 export const post: Collection = {
   name: 'post',
@@ -52,12 +53,12 @@ export const post: Collection = {
       label: '分类',
     },
     {
-      type: 'string',
+      type: 'reference',
       name: 'tags',
       label: 'Tags',
-      list: true,
+      collections: ['category'],
       ui: {
-        component: 'tags',
+        component: TagSelector,
       }
     },
     {

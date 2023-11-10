@@ -26,9 +26,4 @@ export const author: Collection = {
       required: true,
     },
   ],
-  ui: {
-    router: ({ document }) => {
-      return `/posts/${document._sys.filename}`;
-    },
-  },
 }

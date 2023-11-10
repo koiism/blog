@@ -3,6 +3,7 @@ import { post } from './collection/post';
 import { author } from './collection/author';
 import { page } from './collection/page';
 import { category } from './collection/category';
+import { tag } from './collection/tag';
 
 const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main';
 
@@ -27,6 +28,7 @@ export default defineConfig({
       author,
       page,
       category,
+      tag,
     ],
   },
 });
