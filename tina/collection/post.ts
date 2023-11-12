@@ -53,10 +53,10 @@ export const post: Collection = {
       label: '分类',
     },
     {
-      type: 'reference',
+      type: 'string',
       name: 'tags',
       label: 'Tags',
-      collections: ['category'],
+      list:true,
       ui: {
         component: TagSelector,
       }

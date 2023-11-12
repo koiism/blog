@@ -1,8 +1,10 @@
 ---
 title: Examples
 author: src/content/authors/pidan.json
+tags:
+  - love
 createdAt: 2023-11-06T16:00:00.000Z
-updatedAt: 2023-11-08T11:08:43.074Z
+updatedAt: 2023-11-12T15:47:42.413Z
 ---
 
 # Headers

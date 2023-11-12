@@ -3,7 +3,7 @@ import type { Post } from 'tina/__generated__/types';
 import { AuthorLink } from '@/components/Author';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import './index.scss';
-import { postWrapper, timeCalendar, timeFromNow } from '@/lib/utils';
+import { postWrapper, timeFromNow } from '@/lib/utils';
 import { Markdown } from '@/components/Markdonwn';
 
 interface IProps {
