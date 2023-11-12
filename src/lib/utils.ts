@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import type { Post, Author, Page, PageConnectionEdges } from 'tina/__generated__/types';
+import type { Post, Author, Page, PageConnectionEdges, PageBlocksLayout } from 'tina/__generated__/types';
 import {
   AuthorDocument,
   PageDocument,

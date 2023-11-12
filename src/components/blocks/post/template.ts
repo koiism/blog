@@ -1,12 +1,12 @@
 import type { TinaTemplate } from "tinacms";
 
 export const PostBlockTemplate: TinaTemplate = {
-  name: 'markdown',
+  name: 'post',
   label: '文章模块',
   ui: {
     defaultItem: {
       post: '',
-      renderType: 'markdown',
+      renderType: 'card',
     },
   },
   fields: [

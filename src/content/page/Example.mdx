@@ -1,9 +1,13 @@
 ---
 title: example
-isEntry: true
 blocks:
+  - blocks:
+      - post: ''
+        renderType: card
+        _template: post
+    _template: layout
   - post: src/content/posts/example.md
-    renderType: markdown
-    _template: markdown
+    renderType: card
+    _template: post
 ---
 

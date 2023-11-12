@@ -1,12 +1,8 @@
 import { Markdown } from '@/components/Markdonwn';
-import type { PageBlocks } from 'tina/__generated__/types';
+import type { PageBlocksLayoutBlocksPost, PageBlocksPost } from 'tina/__generated__/types';
 
-export const PostBlock = (block: PageBlocks) => {
+export const PostBlock = (block: PageBlocksPost | PageBlocksLayoutBlocksPost) => {
   return (
-    <>
-      {
-        block.post ? <Markdown content={block.post.body}></Markdown> : <></>
-      }
-    </>
+    <>{block.post ? <Markdown content={block.post.body}></Markdown> : <></>}</>
   );
 };

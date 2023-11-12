@@ -1,3 +1,3 @@
-import { PostBlockTemplate } from "./post/template";
+import { allBlocksWithoutLayout, LayoutBlockTemplate } from './layout/template';
 
-export const allBlocks = [PostBlockTemplate];
+export const allBlocks = [...allBlocksWithoutLayout, LayoutBlockTemplate];
