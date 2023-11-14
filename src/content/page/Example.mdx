@@ -1,13 +1,24 @@
 ---
 title: example
 blocks:
-  - blocks:
-      - post: ''
-        renderType: card
-        _template: post
+  - mode: row
+    blocks:
+      - title: what the fuck ?
+        color: primary
+        size: 6xl
+        _template: title
+      - title: ここは俺の所だ！
+        color: foreground
+        size: 4xl
+        _template: title
     _template: layout
-  - post: src/content/posts/example.md
-    renderType: card
-    _template: post
+  - title: React 源码笔记
+    color: primary
+    size: 6xl
+    _template: title
+  - title: 随便写点啥
+    color: foreground
+    size: 4xl
+    _template: title
 ---
 

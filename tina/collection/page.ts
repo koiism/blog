@@ -1,5 +1,5 @@
 import { type Collection } from 'tinacms';
-import { allBlocks } from '../../src/components/blocks/template';
+import { allBlocks } from '../../src/components/Blocks/template';
 
 export const page: Collection = {
   name: 'page',
