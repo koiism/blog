@@ -115,6 +115,7 @@
 }
 
 body {
+  transition: all .1s ease-in-out;
   @include gridline(20px, hsla(var(--primary) / 0.1));
   &::before {
     content: '';
